@@ -1,0 +1,13 @@
+.Header-wrapper{
+    width: 100%;
+    background: #1a1a11;
+    color: #ffff;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 28px;
+    font-weight: 600;
+}
+h1{
+    width: 95%;
+    margin: 0 auto;
+    padding: 10px 0;
+}
