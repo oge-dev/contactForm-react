@@ -3,6 +3,5 @@ Create a Contact Us form that allows users to send you a message to make inquiri
 - Please note:
 Your work should not be in the main branch but in a separate branch with your chosen name.
 On completing the implementation, create a pull request (PR) pointing your working branch to the main branch.
-Get your mentor’s GitHub username and add him/her/them as your reviewer.
 
 **Checkout to LEXIWISE-CONTACT_US to view my work**
