@@ -50,10 +50,5 @@ message - is the content of the inquiry
 Please note:
 Your work should not be in the main branch but in a separate branch with your chosen name.
 On completing the implementation, create a pull request (PR) pointing your working branch to the main branch.
-Get your mentor’s GitHub username and add him/her/them as your reviewer.
-What to submit in Citrone
-Submit the PR link
-Host your work on Netlify/Github Pages and submit the hosted link
-Useful Resources 
-https://blog.logrocket.com/how-to-use-axios-post-requests/
-https://jasonwatmore.com/post/2020/02/01/react-fetch-http-post-request-examples
+
+
