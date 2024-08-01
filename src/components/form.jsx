@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "./form.css";
-import Header from "./header/header";
 import { nanoid } from "nanoid";
 
 // Generate a unique ID
@@ -74,7 +73,6 @@ const ContactUsForm = ({ submitForm }) => {
 
   return (
     <>
-      <Header />
       <div className="form-wrapper">
         <h2>CONTACT_US</h2>
         {successMessage && <div className="success">{successMessage}</div>}
