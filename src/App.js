@@ -17,7 +17,6 @@ function App() {
 
         // Log specific status from the response
         console.log("Response Status:", response.status);
-       
 
         // Confirm form submission
         console.log("Form submitted successfully");
@@ -27,7 +26,7 @@ function App() {
         // Log the entire error for debugging
         console.error("Error:", error);
       });
-    }
+  };
 
   return (
     <div className="App">

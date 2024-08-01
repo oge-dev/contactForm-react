@@ -22,6 +22,7 @@ const ContactUsForm = ({ submitForm }) => {
       ...form,
       [e.target.id]: e.target.value,
     });
+
     console.log(
       form.firstName +
         " " +
@@ -45,7 +46,6 @@ const ContactUsForm = ({ submitForm }) => {
   };
 
   return (
-    <>
       <div className="form-wrapper">
         <h2>CONTACT_US</h2>
         <form onSubmit={handleSubmit}>
@@ -113,7 +113,6 @@ const ContactUsForm = ({ submitForm }) => {
           </div>
         </form>
       </div>
-    </>
   );
 };
 
