@@ -7,7 +7,8 @@ const id = nanoid();
 
 const INITIAL_STATE = {
   id: id,
-  name: "",
+  firstName: "",
+  lastName: "",
   email: "",
   subject: "",
   message: "",
@@ -25,7 +26,15 @@ const ContactUsForm = ({ submitForm }) => {
       [e.target.id]: e.target.value,
     });
     console.log(
-      form.name + " " + form.email + " " + form.subject + " " + form.message
+      form.firstName +
+        " " +
+        form.lastName +
+        " " +
+        form.email +
+        " " +
+        form.subject +
+        " " +
+        form.message
     );
   };
 
@@ -33,9 +42,12 @@ const ContactUsForm = ({ submitForm }) => {
     event.preventDefault();
 
     const newErrors = {};
+    if (form.firstName.trim() === "") {
+      newErrors.firstName = "first Name is required";
+    }
 
-    if (form.name.trim() === "") {
-      newErrors.name = "Name is required";
+    if (form.lastName.trim() === "") {
+      newErrors.lastName = "last Name is required";
     }
 
     if (form.email.trim() === "") {
@@ -60,7 +72,8 @@ const ContactUsForm = ({ submitForm }) => {
       console.log("Form submitted");
       // Perform any additional actions like API calls or redirects
 
-      console.log("Name" + form.name);
+      console.log("Name" + form.firstName);
+      console.log("Name" + form.lastName);
       console.log("Email" + form.email);
       console.log("Subject" + form.subject);
       console.log("Message" + form.message);
@@ -77,21 +90,37 @@ const ContactUsForm = ({ submitForm }) => {
         <h2>CONTACT_US</h2>
         {successMessage && <div className="success">{successMessage}</div>}
         <form onSubmit={handleSubmit}>
-          <div className="name-input-wrapper">
-            <label htmlFor="name">NAME:</label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              value={form.name}
-              onChange={handleChange}
-            />
-            {formErrors.name && (
-              <span className="error">{formErrors.name}</span>
-            )}
+          <div className="form-group Name-wrapper">
+            <div className="name-input-wrapper">
+              <label htmlFor="name">First Name:</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                value={form.firstName}
+                onChange={handleChange}
+              />
+              {formErrors.firstName && (
+                <span className="error">{formErrors.firstName}</span>
+              )}
+            </div>
+            <div className="name-input-wrapper">
+              <label htmlFor="name">Last Name:</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                value={form.lastName}
+                onChange={handleChange}
+              />
+              {formErrors.lastName && (
+                <span className="error">{formErrors.lastName}</span>
+              )}
+            </div>
           </div>
-          <div className="email-input-wrapper">
-            <label htmlFor="email">EMAIL:</label>
+
+          <div className="form-group email-input-wrapper">
+            <label htmlFor="email">Email:</label>
             <input
               type="email"
               id="email"
@@ -103,8 +132,8 @@ const ContactUsForm = ({ submitForm }) => {
               <span className="error">{formErrors.email}</span>
             )}
           </div>
-          <div className="subject-input-wrapper">
-            <label htmlFor="subject">SUBJECT:</label>
+          <div className="form-group subject-input-wrapper">
+            <label htmlFor="subject">Subject:</label>
             <input
               type="text"
               id="subject"
@@ -113,8 +142,8 @@ const ContactUsForm = ({ submitForm }) => {
               onChange={handleChange}
             />
           </div>
-          <div className="message-input-wrapper">
-            <label htmlFor="message">MESSAGE:</label>
+          <div className="form-group message-input-wrapper">
+            <label htmlFor="message">Message:</label>
             <textarea
               id="message"
               name="message"
