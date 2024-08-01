@@ -16,9 +16,6 @@ const INITIAL_STATE = {
 
 const ContactUsForm = ({ submitForm }) => {
   const [form, setForm] = useState(INITIAL_STATE);
-  const [formErrors, setFormErrors] = useState({});
-  const [successMessage, setSuccessMessage] = useState("");
-  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     setForm({
@@ -41,81 +38,38 @@ const ContactUsForm = ({ submitForm }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    const newErrors = {};
-    if (form.firstName.trim() === "") {
-      newErrors.firstName = "first Name is required";
-    }
-
-    if (form.lastName.trim() === "") {
-      newErrors.lastName = "last Name is required";
-    }
-
-    if (form.email.trim() === "") {
-      newErrors.email = "Email is required";
-    } else if (!/\S+@\S+\.\S+/.test(form.email)) {
-      newErrors.email = "Invalid email format";
-    }
-
-    if (form.message.trim() === "") {
-      newErrors.message = "Message is required";
-    }
-    if (Object.keys(newErrors).length > 0) {
-      setFormErrors(newErrors);
-      setSuccessMessage(false);
-    } else {
-      // Handle form submission
-      setFormErrors({});
-      submitForm(form);
-      // Start loading
-      setLoading(true);
-      setSuccessMessage("Form submitted successfully");
-      console.log("Form submitted");
-      // Perform any additional actions like API calls or redirects
-
-      console.log("Name" + form.firstName);
-      console.log("Name" + form.lastName);
-      console.log("Email" + form.email);
-      console.log("Subject" + form.subject);
-      console.log("Message" + form.message);
-    }
+    // Handle form submission
+    submitForm(form);
 
     setForm(INITIAL_STATE);
-    // Stop loading
-    setLoading(false);
   };
 
   return (
     <>
       <div className="form-wrapper">
         <h2>CONTACT_US</h2>
-        {successMessage && <div className="success">{successMessage}</div>}
         <form onSubmit={handleSubmit}>
-          <div className="form-group Name-wrapper">
+          <div className="form-group Name-group">
             <div className="name-input-wrapper">
-              <label htmlFor="name">First Name:</label>
+              <label htmlFor="firstName">First Name:</label>
               <input
                 type="text"
-                id="name"
-                name="name"
+                id="firstName"
+                name="firstName"
                 value={form.firstName}
                 onChange={handleChange}
+                required
               />
-              {formErrors.firstName && (
-                <span className="error">{formErrors.firstName}</span>
-              )}
             </div>
             <div className="name-input-wrapper">
-              <label htmlFor="name">Last Name:</label>
+              <label htmlFor="lastName">Last Name:</label>
               <input
                 type="text"
-                id="name"
-                name="name"
+                id="lastName"
+                name="lastName"
                 value={form.lastName}
                 onChange={handleChange}
               />
-              {formErrors.lastName && (
-                <span className="error">{formErrors.lastName}</span>
-              )}
             </div>
           </div>
 
@@ -127,10 +81,8 @@ const ContactUsForm = ({ submitForm }) => {
               name="email"
               value={form.email}
               onChange={handleChange}
+              required
             />
-            {formErrors.email && (
-              <span className="error">{formErrors.email}</span>
-            )}
           </div>
           <div className="form-group subject-input-wrapper">
             <label htmlFor="subject">Subject:</label>
@@ -140,6 +92,7 @@ const ContactUsForm = ({ submitForm }) => {
               name="subject"
               value={form.subject}
               onChange={handleChange}
+              required
             />
           </div>
           <div className="form-group message-input-wrapper">
@@ -151,18 +104,12 @@ const ContactUsForm = ({ submitForm }) => {
               rows="10"
               value={form.message}
               onChange={handleChange}
+              required
             />
-            {formErrors.message && (
-              <span className="error">{formErrors.message}</span>
-            )}
           </div>
-          {Object.keys(formErrors).length > 0 && (
-            <div className="error">Please fix the form errors.</div>
-          )}
+
           <div className="btn-wrapper">
-            <button type="submit">
-              {loading ? "Submitting..." : "Submit"}
-            </button>
+            <button type="submit">Submit</button>
           </div>
         </form>
       </div>

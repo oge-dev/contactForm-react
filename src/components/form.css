@@ -14,7 +14,7 @@ form {
   display: flex;
   flex-direction: column;
 }
-.Name-wrapper {
+.Name-group {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
