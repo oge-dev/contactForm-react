@@ -14,17 +14,13 @@ function App() {
       .then((response) => {
         // Log the entire form object for debugging purposes
         console.log("Response Data:", response.data);
-
+        
         // Log specific status from the response
         console.log("Response Status:", response.status);
-
-        // Confirm form submission
-        console.log("Form submitted successfully");
       })
       .catch((error) => {
-        console.error("Error occur");
         // Log the entire error for debugging
-        console.error("Error:", error);
+        console.error("Error occured:", error);
       });
   };
 

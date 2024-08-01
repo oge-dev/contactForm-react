@@ -47,7 +47,7 @@ const ContactUsForm = ({ submitForm }) => {
 
   return (
       <div className="form-wrapper">
-        <h2>CONTACT_US</h2>
+        <h2>CONTACT US</h2>
         <form onSubmit={handleSubmit}>
           <div className="form-group Name-group">
             <div className="name-input-wrapper">
