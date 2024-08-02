@@ -1,43 +1,53 @@
+/* Center the form wrapper content vertically and horizontally */
 .form-wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
+  min-height: 100vh; /* Full viewport height */
 }
 
+/* Form styles for max-width and responsive width */
 form {
-  max-width: 582px;
-  width: 90%;
+  max-width: 582px; /* Maximum width of the form */
+  width: 90%; /* Responsive width */
 }
+
+/* Form group and name input wrapper styles for flex column layout */
 .form-group,
 .name-input-wrapper {
   display: flex;
   flex-direction: column;
 }
+
+/* Name group styles for flex row layout and wrapping */
 .Name-group {
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
+  flex-wrap: wrap; /* Allow wrapping for responsive layout */
 }
+
+/* Name input wrapper styles for flexible width */
 .name-input-wrapper {
   flex: 1;
 }
+
+/* Margin left for adjacent name input wrappers */
 .name-input-wrapper + .name-input-wrapper {
   margin-left: 12px;
 }
-.btn-wrapper  {
+
+/* Button wrapper styles for flexible width */
+.btn-wrapper {
   flex: 1;
 }
+
+/* Button styles for full width */
 .btn-wrapper button {
   width: 100%;
 }
 
-
-
-
-
-
+/* Submit status styles for font size, padding, margin, and border radius */
 .submit-status {
   font-size: 16px;
   padding: 10px;
@@ -45,32 +55,31 @@ form {
   border-radius: 5px;
 }
 
+/* Error status text color */
 .error-status {
   color: red;
 }
 
+/* Success status text color */
 .success {
   color: darkgreen;
 }
-/* form.css */
 
+/* Loading icon animation */
 .loading-icon {
   animation: spin 1s linear infinite;
 }
 
-/* @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-} */
-
+/* Keyframes for spin animation */
 @keyframes spin {
   to {
     transform: rotate(360deg);
   }
 }
 
+/* Media query for responsiveness on small screens */
 @media (max-width: 425px) {
   .name-input-wrapper + .name-input-wrapper {
-    margin-left: 0;
+    margin-left: 0; /* Remove left margin for narrow screens */
   }
 }

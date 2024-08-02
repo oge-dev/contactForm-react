@@ -1,8 +1,10 @@
+/* Apply default box-sizing, padding, and margin to all elements */
 *{
   padding: 0;
   margin: 0;
   box-sizing: border-box;
 }
+/* Styles for the App component */
 .App{
   max-width: 100%;
   font-family: "Inter", sans-serif;

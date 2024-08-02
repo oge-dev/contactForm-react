@@ -1,11 +1,12 @@
+// Importing necessary dependencies and components
 import React, { useState } from "react";
-import "./form.css";
-import { nanoid } from "nanoid";
-import { FaSpinner } from "react-icons/fa";
+import "./form.css"; // Importing form.css for styling the form
+import { nanoid } from "nanoid"; // Importing nanoid for generating unique IDs
+import { FaSpinner } from "react-icons/fa"; // Importing FaSpinner icon from react-icons
 
+// Initial state object for the form, with a unique ID and empty fields
 const INITIAL_STATE = {
-  // Generate a unique ID
-  id: nanoid(),
+  id: nanoid(), // Generate a unique ID
   firstName: "",
   lastName: "",
   email: "",
@@ -13,18 +14,22 @@ const INITIAL_STATE = {
   message: "",
 };
 
+// ContactUsForm component definition, accepting a submitForm function as a prop
 const ContactUsForm = ({ submitForm }) => {
+  // State hooks for managing form data, errors, submission status, and loading state
   const [form, setForm] = useState(INITIAL_STATE);
   const [errors, setErrors] = useState({});
   const [submitStatus, setSubmitStatus] = useState("");
   const [loading, setLoading] = useState(false);
 
+  // Handler for input changes, updating the form state
   const handleChange = (e) => {
     setForm({
       ...form,
       [e.target.id]: e.target.value,
     });
 
+    // Logging form data for debugging purposes
     console.log(
       form.firstName +
         " " +
@@ -38,6 +43,7 @@ const ContactUsForm = ({ submitForm }) => {
     );
   };
 
+  // Function to validate the form fields
   const validateForm = () => {
     const newErrors = {};
     if (!form.firstName.trim()) {
@@ -57,9 +63,11 @@ const ContactUsForm = ({ submitForm }) => {
     return newErrors;
   };
 
+  // Handler for form submission
   const handleSubmit = (event) => {
     event.preventDefault();
 
+    // Validate the form and handle errors if any
     const newErrors = validateForm();
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
@@ -69,30 +77,31 @@ const ContactUsForm = ({ submitForm }) => {
       setErrors({});
       setLoading(true);
 
-      // Handle form submission
+      // Handle form submission using the submitForm function passed as a prop
       submitForm(form)
         .then((response) => {
-          // Log the entire form object for debugging purposes
+          // Log the response data for debugging purposes
           console.log("Response Data:", response.data);
 
           // Log specific status from the response
           console.log("Response Status:", response.status);
           setSubmitStatus("Form submitted successfully");
-          setForm(INITIAL_STATE);
+          setForm(INITIAL_STATE); // Reset the form
         })
         .catch((error) => {
           // Log the entire error for debugging
-          console.error("Error occured:", error);
+          console.error("Error occurred:", error);
           setSubmitStatus(
             `There was an error submitting the form: ${error.message}`
           );
         })
         .finally(() => {
-          setLoading(false);
+          setLoading(false); // Reset the loading state
         });
     }
   };
 
+  // JSX for rendering the form
   return (
     <div className="form-wrapper">
       <h2>CONTACT US</h2>
@@ -136,7 +145,7 @@ const ContactUsForm = ({ submitForm }) => {
               onChange={handleChange}
             />
             {errors.lastName && (
-              <p id="firstNameError" className="error">
+              <p id="lastNameError" className="error">
                 {errors.lastName}
               </p>
             )}
@@ -192,11 +201,14 @@ const ContactUsForm = ({ submitForm }) => {
         </div>
 
         <div className="btn-wrapper">
-          <button type="submit">{loading ? <FaSpinner className="loading-icon" /> : "Submit"}</button>
+          <button type="submit">
+            {loading ? <FaSpinner className="loading-icon" /> : "Submit"}
+          </button>
         </div>
       </form>
     </div>
   );
 };
 
+// Exporting the ContactUsForm component as the default export
 export default ContactUsForm;
