@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./form.css";
 import { nanoid } from "nanoid";
+import { FaSpinner } from "react-icons/fa";
 
 const INITIAL_STATE = {
   // Generate a unique ID
@@ -16,6 +17,7 @@ const ContactUsForm = ({ submitForm }) => {
   const [form, setForm] = useState(INITIAL_STATE);
   const [errors, setErrors] = useState({});
   const [submitStatus, setSubmitStatus] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     setForm({
@@ -62,23 +64,31 @@ const ContactUsForm = ({ submitForm }) => {
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
       setSubmitStatus("");
+      setLoading(false);
     } else {
       setErrors({});
+      setLoading(true);
+
       // Handle form submission
       submitForm(form)
         .then((response) => {
           // Log the entire form object for debugging purposes
-        console.log("Response Data:", response.data);
+          console.log("Response Data:", response.data);
 
-        // Log specific status from the response
-        console.log("Response Status:", response.status);
+          // Log specific status from the response
+          console.log("Response Status:", response.status);
           setSubmitStatus("Form submitted successfully");
           setForm(INITIAL_STATE);
         })
         .catch((error) => {
-           // Log the entire error for debugging
+          // Log the entire error for debugging
           console.error("Error occured:", error);
-          setSubmitStatus(`There was an error submitting the form: ${error.message}`);
+          setSubmitStatus(
+            `There was an error submitting the form: ${error.message}`
+          );
+        })
+        .finally(() => {
+          setLoading(false);
         });
     }
   };
@@ -98,7 +108,9 @@ const ContactUsForm = ({ submitForm }) => {
       <form onSubmit={handleSubmit}>
         <div className="form-group Name-group">
           <div className="name-input-wrapper">
-            <label htmlFor="firstName">First Name<sup>*</sup></label>
+            <label htmlFor="firstName">
+              First Name<sup>*</sup>
+            </label>
             <input
               type="text"
               id="firstName"
@@ -113,7 +125,9 @@ const ContactUsForm = ({ submitForm }) => {
             )}
           </div>
           <div className="name-input-wrapper">
-            <label htmlFor="lastName">Last Name<sup>*</sup></label>
+            <label htmlFor="lastName">
+              Last Name<sup>*</sup>
+            </label>
             <input
               type="text"
               id="lastName"
@@ -121,7 +135,7 @@ const ContactUsForm = ({ submitForm }) => {
               value={form.lastName}
               onChange={handleChange}
             />
-             {errors.lastName && (
+            {errors.lastName && (
               <p id="firstNameError" className="error">
                 {errors.lastName}
               </p>
@@ -130,7 +144,9 @@ const ContactUsForm = ({ submitForm }) => {
         </div>
 
         <div className="form-group email-input-wrapper">
-          <label htmlFor="email">Email<sup>*</sup></label>
+          <label htmlFor="email">
+            Email<sup>*</sup>
+          </label>
           <input
             type="text"
             id="email"
@@ -156,14 +172,17 @@ const ContactUsForm = ({ submitForm }) => {
           />
         </div>
         <div className="form-group message-input-wrapper">
-          <label htmlFor="message">Message<sup>*</sup></label>
+          <label htmlFor="message">
+            Message<sup>*</sup>
+          </label>
           <textarea
             id="message"
             name="message"
             cols="30"
             rows="10"
             value={form.message}
-            onChange={handleChange} aria-describedby="messageError"
+            onChange={handleChange}
+            aria-describedby="messageError"
           />
           {errors.message && (
             <p id="messageError" className="error">
@@ -173,7 +192,7 @@ const ContactUsForm = ({ submitForm }) => {
         </div>
 
         <div className="btn-wrapper">
-          <button type="submit">Submit</button>
+          <button type="submit">{loading ? <FaSpinner className="loading-icon" /> : "Submit"}</button>
         </div>
       </form>
     </div>
