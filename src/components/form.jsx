@@ -98,7 +98,7 @@ const ContactUsForm = ({ submitForm }) => {
       <form onSubmit={handleSubmit}>
         <div className="form-group Name-group">
           <div className="name-input-wrapper">
-            <label htmlFor="firstName">First Name:</label>
+            <label htmlFor="firstName">First Name<sup>*</sup></label>
             <input
               type="text"
               id="firstName"
@@ -113,7 +113,7 @@ const ContactUsForm = ({ submitForm }) => {
             )}
           </div>
           <div className="name-input-wrapper">
-            <label htmlFor="lastName">Last Name:</label>
+            <label htmlFor="lastName">Last Name<sup>*</sup></label>
             <input
               type="text"
               id="lastName"
@@ -130,7 +130,7 @@ const ContactUsForm = ({ submitForm }) => {
         </div>
 
         <div className="form-group email-input-wrapper">
-          <label htmlFor="email">Email:</label>
+          <label htmlFor="email">Email<sup>*</sup></label>
           <input
             type="text"
             id="email"
@@ -146,7 +146,7 @@ const ContactUsForm = ({ submitForm }) => {
           )}
         </div>
         <div className="form-group subject-input-wrapper">
-          <label htmlFor="subject">Subject:</label>
+          <label htmlFor="subject">Subject</label>
           <input
             type="text"
             id="subject"
@@ -156,7 +156,7 @@ const ContactUsForm = ({ submitForm }) => {
           />
         </div>
         <div className="form-group message-input-wrapper">
-          <label htmlFor="message">Message:</label>
+          <label htmlFor="message">Message<sup>*</sup></label>
           <textarea
             id="message"
             name="message"
