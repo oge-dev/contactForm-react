@@ -44,8 +44,8 @@ Working with forms
     "email": "test2@test.com",
     "subject": "test2 subject",
     "message": "test2 message"
-}
-``
+  }
+  ```
 - where:
 - id - is the unique id for the data being posted. Use a third-party library like nanoid to generate this random id
 - name - is the name of the user
