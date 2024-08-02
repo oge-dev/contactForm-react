@@ -41,10 +41,13 @@ const ContactUsForm = ({ submitForm }) => {
     if (!form.firstName.trim()) {
       newErrors.firstName = "First name is required";
     }
+    if (!form.lastName.trim()) {
+      newErrors.lastName = "Last name is required";
+    }
     if (!form.email.trim()) {
       newErrors.email = "Email is required";
     } else if (!/\S+@\S+\.\S+/.test(form.email)) {
-      newErrors.email = "Email is invalid";
+      newErrors.email = "Please enter a valid email address";
     }
     if (!form.message.trim()) {
       newErrors.message = "Message is required";
@@ -118,6 +121,11 @@ const ContactUsForm = ({ submitForm }) => {
               value={form.lastName}
               onChange={handleChange}
             />
+             {errors.lastName && (
+              <p id="firstNameError" className="error">
+                {errors.lastName}
+              </p>
+            )}
           </div>
         </div>
 
