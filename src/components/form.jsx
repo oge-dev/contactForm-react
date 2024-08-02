@@ -104,7 +104,7 @@ const ContactUsForm = ({ submitForm }) => {
   // JSX for rendering the form
   return (
     <div className="form-wrapper">
-      <h2>CONTACT US</h2>
+      <h2>Contact Us</h2>
       {submitStatus && (
         <p
           className={`submit-status ${
@@ -126,6 +126,9 @@ const ContactUsForm = ({ submitForm }) => {
               name="firstName"
               value={form.firstName}
               onChange={handleChange}
+              className={
+                errors.firstName ? "error-input-border" : "input-border"
+              }
             />
             {errors.firstName && (
               <p id="firstNameError" className="error">
@@ -143,6 +146,9 @@ const ContactUsForm = ({ submitForm }) => {
               name="lastName"
               value={form.lastName}
               onChange={handleChange}
+              className={
+                errors.lastName ? "error-input-border" : "input-border"
+              }
             />
             {errors.lastName && (
               <p id="lastNameError" className="error">
@@ -163,6 +169,7 @@ const ContactUsForm = ({ submitForm }) => {
             value={form.email}
             onChange={handleChange}
             aria-describedby="emailError"
+            className={errors.email ? "error-input-border" : "input-border"}
           />
           {errors.email && (
             <p id="emailError" className="error">
@@ -187,11 +194,11 @@ const ContactUsForm = ({ submitForm }) => {
           <textarea
             id="message"
             name="message"
-            cols="30"
-            rows="10"
+            rows="5"
             value={form.message}
             onChange={handleChange}
             aria-describedby="messageError"
+            className={errors.message ? "error-input-border" : "input-border"}
           />
           {errors.message && (
             <p id="messageError" className="error">
@@ -201,7 +208,7 @@ const ContactUsForm = ({ submitForm }) => {
         </div>
 
         <div className="btn-wrapper">
-          <button type="submit">
+          <button className="btn" type="submit">
             {loading ? <FaSpinner className="loading-icon" /> : "Submit"}
           </button>
         </div>
