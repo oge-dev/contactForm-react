@@ -38,7 +38,8 @@ Working with forms
   [typicode](https://my-json-server.typicode.com/tundeojediran/contacts-api-server/inquiries)
 
 - The data to post to the API endpoint should be in this format:
-  ```{
+  ```
+  {
     "id": 3,
     "name": "Tun Oje",
     "email": "test2@test.com",
